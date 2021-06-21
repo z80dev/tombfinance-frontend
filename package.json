@@ -1,0 +1,79 @@
+{
+  "name": "tomb.finance",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ethersproject/providers": "^5.0.9",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@pancakeswap-libs/sdk": "^1.0.1",
+    "@pancakeswap/sdk": "^2.3.1",
+    "@reduxjs/toolkit": "^1.4.0",
+    "@spiritswap/sdk": "https://github.com/Layer3Org/spiritswap-sdk",
+    "@spookyswap/sdk": "https://github.com/SpookySwap/spookyswap-sdk",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/humanize-plus": "^1.8.0",
+    "@types/jest": "^26.0.9",
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.46",
+    "@types/react-redux": "^7.1.9",
+    "@uniswap/sdk": "^3.0.3-beta.1",
+    "bignumber.js": "^9.0.0",
+    "clsx": "^1.1.1",
+    "ethers": "^5.0.12",
+    "humanize-plus": "^1.8.2",
+    "material-ui-image": "^3.3.2",
+    "moment": "^2.29.1",
+    "numeral": "^2.0.6",
+    "react": "^16.13.1",
+    "react-circular-progressbar": "^2.0.3",
+    "react-countdown": "^2.2.1",
+    "react-countup": "^4.3.3",
+    "react-dom": "^16.13.1",
+    "react-feather": "^2.0.8",
+    "react-loading-skeleton": "^2.1.1",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-spring": "^8.0.27",
+    "redux-localstorage-simple": "^2.3.1",
+    "styled-components": "^5.1.1",
+    "typescript": "^3.9.7",
+    "use-wallet": "^0.8.1",
+    "web3": "^1.2.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "CI= GENERATE_SOURCEMAP=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/numeral": "0.0.28",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.2",
+    "prettier": "2.3.1"
+  }
+}

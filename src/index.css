@@ -1,0 +1,68 @@
+body,
+html,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: 'Poppins', sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.makeStyles-paper-11,
+.makeStyles-paper-11 h2,
+.MuiTypography-body1,
+.MuiPaper-root,
+.MuiPaper-root h2 {
+  color: #2c2560 !important;
+}
+
+body {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Amarante', cursive !important;
+}
+
+footer .a:hover {
+  fill: '#DA4567';
+}
+
+.MuiToolbar-regular {
+  color: #e0e3bd;
+}
+
+.MuiButton-containedPrimary,
+.MuiButton-containedPrimary:hover,
+.MuiListItem-button:hover,
+.MuiButtonBase-root:hover {
+  color: #fff !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
