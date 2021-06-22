@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from 'react';
+import React, { useMemo } from 'react';
 import Page from '../../components/Page';
 import HomeImage from '../../assets/img/home.png';
 import CashImage from '../../assets/img/crypto_tomb_cash.svg';
@@ -6,8 +6,6 @@ import Image from 'material-ui-image';
 import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
 import CardIcon from '../../components/CardIcon';
-import FlashOnIcon from '@material-ui/icons/FlashOn';
-import IconButton from '../../components/IconButton';
 import TokenSymbol from '../../components/TokenSymbol';
 import useTombStats from '../../hooks/useTombStats';
 import useLpStats from '../../hooks/useLpStats';
@@ -25,7 +23,6 @@ import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { ThemeContext } from 'styled-components';
 import useTombFinance from '../../hooks/useTombFinance';
 
 const BackgroundImage = createGlobalStyle`
@@ -52,7 +49,6 @@ const Home = () => {
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
   const tombFinance = useTombFinance();
-  const { color: themeColor } = useContext(ThemeContext);
 
   let tomb;
   let tShare;
@@ -102,8 +98,8 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  const tombLpZap = useZap( { depositTokenName: 'TOMB-FTM-LP'} );
-  const tshareLpZap = useZap( { depositTokenName: 'TSHARE-FTM-LP'} );
+  const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
+  const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
 
   const [onPresentTombZap, onDissmissTombZap] = useModal(
     <ZapModal
@@ -128,8 +124,6 @@ const Home = () => {
       tokenName={'TSHARE-FTM-LP'}
     />,
   );
-
-
 
   return (
     <Page>
@@ -341,7 +335,12 @@ const Home = () => {
                 </CardIcon>
               </Box>
               <Box mt={2}>
-                <Button color="primary" onClick={onPresentTshareZap} variant="contained" style={{ marginRight: '10px' }}>
+                <Button
+                  color="primary"
+                  onClick={onPresentTshareZap}
+                  variant="contained"
+                  style={{ marginRight: '10px' }}
+                >
                   Zap In
                 </Button>
               </Box>
