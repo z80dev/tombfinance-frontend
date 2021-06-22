@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import Page from '../../components/Page';
 import HomeImage from '../../assets/img/home.png';
 import CashImage from '../../assets/img/crypto_tomb_cash.svg';
@@ -6,9 +6,13 @@ import Image from 'material-ui-image';
 import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
 import CardIcon from '../../components/CardIcon';
+import FlashOnIcon from '@material-ui/icons/FlashOn';
+import IconButton from '../../components/IconButton';
 import TokenSymbol from '../../components/TokenSymbol';
 import useTombStats from '../../hooks/useTombStats';
 import useLpStats from '../../hooks/useLpStats';
+import useModal from '../../hooks/useModal';
+import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usetShareStats from '../../hooks/usetShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
@@ -18,8 +22,10 @@ import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deplo
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 
 import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
+import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { ThemeContext } from 'styled-components';
 import useTombFinance from '../../hooks/useTombFinance';
 
 const BackgroundImage = createGlobalStyle`
@@ -46,6 +52,7 @@ const Home = () => {
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
   const tombFinance = useTombFinance();
+  const { color: themeColor } = useContext(ThemeContext);
 
   let tomb;
   let tShare;
@@ -94,6 +101,35 @@ const Home = () => {
     [tBondStats],
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
+
+  const tombLpZap = useZap( { depositTokenName: 'TOMB-FTM-LP'} );
+  const tshareLpZap = useZap( { depositTokenName: 'TSHARE-FTM-LP'} );
+
+  const [onPresentTombZap, onDissmissTombZap] = useModal(
+    <ZapModal
+      decimals={18}
+      onConfirm={(zappingToken, tokenName, amount) => {
+        if (Number(amount) <= 0 || isNaN(Number(amount))) return;
+        tombLpZap.onZap(zappingToken, tokenName, amount);
+        onDissmissTombZap();
+      }}
+      tokenName={'TOMB-FTM-LP'}
+    />,
+  );
+
+  const [onPresentTshareZap, onDissmissTshareZap] = useModal(
+    <ZapModal
+      decimals={18}
+      onConfirm={(zappingToken, tokenName, amount) => {
+        if (Number(amount) <= 0 || isNaN(Number(amount))) return;
+        tshareLpZap.onZap(zappingToken, tokenName, amount);
+        onDissmissTshareZap();
+      }}
+      tokenName={'TSHARE-FTM-LP'}
+    />,
+  );
+
+
 
   return (
     <Page>
@@ -276,7 +312,12 @@ const Home = () => {
                   <TokenSymbol symbol="TOMB-FTM-LP" />
                 </CardIcon>
               </Box>
-              <Box>
+              <Box mt={2}>
+                <Button color="primary" onClick={onPresentTombZap} variant="contained" style={{ marginRight: '10px' }}>
+                  Zap In
+                </Button>
+              </Box>
+              <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} TOMB /{' '}
                   {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} FTM
@@ -299,7 +340,12 @@ const Home = () => {
                   <TokenSymbol symbol="TSHARE-FTM-LP" />
                 </CardIcon>
               </Box>
-              <Box>
+              <Box mt={2}>
+                <Button color="primary" onClick={onPresentTshareZap} variant="contained" style={{ marginRight: '10px' }}>
+                  Zap In
+                </Button>
+              </Box>
+              <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} TSHARE /{' '}
                   {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
